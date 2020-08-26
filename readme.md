@@ -90,28 +90,6 @@ This app offers more visiliby to his business and make it easier for the individ
 
  
 
-## Services
-
-- Auth Service
-  - auth.login(user)
-  - auth.signup(user)
-  - auth.logout()
-  - auth.me()
-
-- Backlog Service
-  - backlog.filter(type, status) // for different types of media and if they are done or not
-  - backlog.detail(id)
-  - backlog.add(id)
-  - backlog.delete(id)
-  - backlog.update(id)
-  
-- External API
-  - API for games
-  - API for series
-  - API for films
-
-
-<br>
 
 
 # Server / Backend
@@ -187,16 +165,16 @@ This app offers more visiliby to his business and make it easier for the individ
 
 ### Trello
 
-[Link to your trello board](https://trello.com/b/iloDccrZ/backlog-quest) 
+[Link to your trello board](https://trello.com/b/JXZNSlqs/medplan) 
 
 ### Git
 
-[Client repository Link](https://github.com/jorgeberrizbeitia/backlog-quest)
+[Client repository Link]https://github.com/maevamerrou/medplan)
 
-[Server repository Link](https://github.com/jorgeberrizbeitia/backlog-quest-server)
+[Server repository Link](https://github.com/rlaz133/medplan-server)
 
-[Deployed App Link](https://backlog-quest.herokuapp.com/login)
+[Deployed App Link]()
 
 ### Slides
 
-[Slides Link](https://docs.google.com/presentation/d/1zndKZ8DC-_i391alptPKsAKanCSXTrLVL39L3xtEjz8/edit?usp=sharing)
+[Slides Link]()
