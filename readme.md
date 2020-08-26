@@ -47,25 +47,6 @@ This app offers more visiliby to his business and make it easier for the individ
 ## React Router Routes (React App)
 
 
-|Path|Component|Permissions|Behavior|
-| ------------------------- | --------------------           | ----------- | ------------------------------------------------------------ |
-| /| Header,  Navbar (if logged in), Home search bar, Search card| public| 
-                                        |
-| /signup| Header, Signup form| public| Signup form, link to login, redirect to login page |
-| /login| Header,  Login form| public| Login form, link to sign up, redirect to home page  |
-| /logout| n/a| patient, doctor  | Navigate to homepage after logout, expire session|
-| /doctor/:id| Navbar, Doctor public profile (Calendar)| patient, doctor  | Show doctor details and calendar to book|
-| /user/:id| Navbar, Patient profile| patient| Show patient details and edit buttons|
-| /user/:id/appointments| Navbar, Appointments (Appointment search bar, Appointment card) | Patient can check his appointments, reports, and cancel/edit appointments |
-| /user/:id/medication-planner| Navbar, Medication schedule (Medication card) | Patient can check his medications and add a check button to follow up|
-| /doctor/:id/calendar| Navbar, Doctor calendar (Calendar)| Doctor can check his appointments calendar and click on details |
-| /doctor/:id/calendar/:id | Navbar, Appointment details | Doctor can check the details of an appointment and add report and prescription, also can cancel the appointment |
-| /doctor/:id/calendar/:id/prescription | Navbar, Prescription form, Prescription card, Add medication form | Doctor can add the prescription (each item = a medication) |
-| /doctor/:id/private| Navbar, Doctor edit profile| Doctor can edit his profile and calendar |
-
-
-
-
 | Path                      | Component                      | Permissions | Behavior                                                     |
 | ------------------------- | --------------------           | ----------- | ------------------------------------------------------------ |
 | `/`                       | SplashPage                     | public `<Route>`            | Home page                                        |
