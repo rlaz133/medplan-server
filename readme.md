@@ -44,52 +44,71 @@ This app offers more visiliby to his business and make it easier for the individ
 
 # Client / Frontend
 
+
 ## React Router Routes (React App)
-
-
-| Path                      | Component                      | Permissions | Behavior                                                     |
-| ------------------------- | --------------------           | ----------- | ------------------------------------------------------------ |
-| `/`                       | SplashPage                     | public `<Route>`            | Home page                                        |
-| `/signup`                 | SignupPage                     | anon only  `<AnonRoute>`    | Signup form, link to login, navigate to homepage after signup |
-| `/login`                  | LoginPage                      | anon only `<AnonRoute>`     | Login form, link to signup, navigate to homepage after login  |
-| `/logout`                 | n/a                            | user only `<PrivateRoute>`  | Navigate to homepage after logout, expire session             |
-| `/backlog/series`         | NavBar, ElementList, FooterBar | user only `<PrivateRoute>`  | Shows all tv series on backlog                                |
-| `/backlog/films`          | NavBar, ElementList, FooterBar | user only `<PrivateRoute>`  | Shows all films on backlog                                    |
-| `/backlog/games`          | NavBar, ElementList, FooterBar | user only `<PrivateRoute>`  | Shows all games on backlog                                    |
-| `/search/series`          | SearchForm, SearchResults      | user only  `<PrivateRoute>` | Search a tv series to be added                                |
-| `/search/films`           | SearchForm, SearchResults      | user only `<PrivateRoute>`  | Search a film to be added                                     |
-| `/search/games`           | SearchForm, SearchResults      | user only `<PrivateRoute>`  | Search a game to be added                                     |
-| `/add/:id`                | ElementInfo                    | user only `<PrivateRoute>`  | Add an element to the backlog                                 |
-| `/profile`                | Profile, Stats                 | user only  `<PrivateRoute>` | Check profile with stat information                           |
-| `/done/series`            | Done list for Series           | user only  `<PrivateRoute>` | Shows all tv series finished                                  |
-| `/done/films`             | Done list for films            | user only `<PrivateRoute>`  | Shows all films finished                                      |
-| `/done/games`             | Done list for games            | user only `<PrivateRoute>`  | Shows all videogames finished                                 |
+|Path|Components|Permissions|Behavior|
+| ----------- | ----------- | ----------- | ----------- |
+| /| Header,  Navbar (if logged in), Home search bar, Search card| public| 
+| /signup| Header, Signup form| public| Signup form, link to login, redirect to login page |
+| /login| Header,  Login form| public| Login form, link to sign up, redirect to home page  |
+| /logout| n/a| patient, doctor  | Navigate to homepage after logout, expire session|
+| /doctor/:doctorId| Navbar, Doctor public profile (Calendar)| patient, doctor  | Show doctor details and calendar to book|
+| /patient| Navbar, Patient profile| patient| Show patient details and edit buttons|
+| /patient/appointments| Navbar, Appointments (Appointment search bar, Appointment card) | patient |Patient can check his appointments, reports, and cancel/edit appointments |
+| /patient/medication-planner| Navbar, Medication schedule (Medication card) | patient |Patient can check his medications and add a check button to follow up|
+| /doctor/calendar| Navbar, Doctor calendar (Calendar)| doctor | Doctor can check his appointments calendar and click on details |
+| /doctor/calendar/:appointmentId | Navbar, Appointment details | doctor | Doctor can check the details of an appointment, add report and prescription, he can also cancel the appointment |
+| /doctor/calendar/:appointmentId/prescription | Navbar, Prescription form, Prescription card, Add medication form | doctor |Doctor can add the prescription (each item = a medication) |
+| /doctor/private| Navbar, Doctor edit profile| doctor |Doctor can edit his profile and calendar |             |
           
 
 ## Components
 
-- LoginPage
+- Header
 
-- SignupPage
+- Navbar
 
-- NavBar
+- Login form
 
-- FooterBar
+- Signup form
 
-- BackBar
+- Home search bar
 
-- ElementList
+- Search card
 
-- SearchForm
+- Doctor public profile
 
-- SearchResults
+- Patient profile
 
-- ElementInfo
+- Appointments
 
-- Stats
+- Appointment search bar
+
+- Appointment card
+
+- Medication schedule
+
+- Medication card
+
+- Doctor calendar
+
+- Appointment details
+
+- Delete appointment pop-up (backlog)
+
+- Prescription form
+
+- Prescription card
+
+- Add medication form
+
+- Doctor edit profile
+
+- Calendar
+
+- Footer (computer view)
 
  
-
 
 
 # Server / Backend
@@ -169,9 +188,9 @@ This app offers more visiliby to his business and make it easier for the individ
 
 ### Git
 
-[Client repository Link]https://github.com/maevamerrou/medplan)
+[Client repository Link](https://github.com/maevamerrou/medplan)
 
-[Server repository Link](https://github.com/rlaz133/medplan-server)
+[Server repository Link](https://github.com/rlaz133/medplan-serverr)
 
 [Deployed App Link]()
 
