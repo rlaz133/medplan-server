@@ -165,7 +165,7 @@ This app offers more visiliby to his business and make it easier for the individ
 | POST         | `/patient/:doctorId/appointments`              |      calendar event                        |                |              | Creates an appointment with the doctor's and the session's id and the calendar event data                                         |
 | PATCH         | `/patient/:doctorId/appointments`                        |     calendar event                         |             |           | Edit appointment if its patient id is the same as the user and the start date is more than 48h in the future                                       |                                       |
 | DELETE      | `/patient/:doctorId/appointments`                 |       calendar event                       |             |           | Delete appointment if its patient id is the same as the user and the start date is more than 48h in the future                                                  |
-| GET         | `/patient/:id/profile`                |                              |                |           | Returns all the information of the patient                                       |
+| GET         | `/patient/:id/git profile`                |                              |                |           | Returns all the information of the patient                                       |
 | PATCH         | `/patient/:id/profile`                 |                              |                |              | Edit the corresponding value on the patient's profile                                        |
 | GET         | `/patient/appointments`                 |       {doctor, specialty, date}                       |                |              |Returns all the appointments with the patient’s id that fit the search criteria                                          |
 | GET         | `/patient/appointments/:id/report`                 |                              |                |              |Get the medical report from the appointment                                       |
@@ -190,7 +190,7 @@ This app offers more visiliby to his business and make it easier for the individ
 
 [Client repository Link](https://github.com/maevamerrou/medplan)
 
-[Server repository Link](https://github.com/rlaz133/medplan-serverr)
+[Server repository Link](https://github.com/rlaz133/medplan-server)
 
 [Deployed App Link]()
 
