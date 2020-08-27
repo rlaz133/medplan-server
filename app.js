@@ -1,5 +1,5 @@
 require('dotenv').config();
-require('./config/database.config')
+require('./configs/db.config')
 
 const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -12,6 +12,13 @@ const path         = require('path');
 const cors         = require('cors')
 const session      = require('express-session');
 const MongoStore   = require('connect-mongo')(session);
+
+
+
+const app_name = require('./package.json').name;
+const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
+
+const app = express();
 
 app.use(
   session({
@@ -29,11 +36,6 @@ app.use(
     }),
   })
 );
-
-const app_name = require('./package.json').name;
-const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
-
-const app = express();
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -67,8 +69,8 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
-const index = require('./routes/index');
-app.use('/', index);
+const auth = require('./routes/auth.routes');
+app.use('/', auth);
 
 
 module.exports = app;
