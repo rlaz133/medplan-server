@@ -160,9 +160,9 @@ This app offers more visiliby to his business and make it easier for the individ
 | POST        | `/auth/logout`                | (empty)                      | 204            | 400          | Logs out the user                                            |
 | GET        | `/doctor/search`                 | {speciality, city}  |                | 400          | Returns the entries on doctor collection that match with the speciality and/or city                                             |
 | GET         | `/doctor/:doctorId`             |                              |                |           | Returns all the information of the doctor                                           |
-| GET         | `/doctor/:doctorId/appointments`              |                              |                |              | Returns all the appointments with the doctor's id                                       |
+| GET         | `/doctor/appointments/:doctorId`              |                              |                |              | Returns all the appointments with the doctor's id                                       |
 | PATCH         | `/doctor/:doctorId`                 |                              |                |              | Edit the corresponding value on the doctor's profile |
-| POST         | `/patient/:doctorId/appointments`              |      calendar event                        |                |              | Creates an appointment with the doctor's and the session's id and the calendar event data                                         |
+| POST         | `/patient/appointments/:doctorId`              |      calendar event                        |                |              | Creates an appointment with the doctor's and the session's id and the calendar event data                                         |
 | PATCH         | `/patient/:doctorId/appointments`                        |     calendar event                         |             |           | Edit appointment if its patient id is the same as the user and the start date is more than 48h in the future                                       |                                       |
 | DELETE      | `/patient/:doctorId/appointments`                 |       calendar event                       |             |           | Delete appointment if its patient id is the same as the user and the start date is more than 48h in the future                                                  |
 | GET         | `/patient/:id/git profile`                |                              |                |           | Returns all the information of the patient                                       |
@@ -170,9 +170,9 @@ This app offers more visiliby to his business and make it easier for the individ
 | GET         | `/patient/appointments`                 |       {doctor, specialty, date}                       |                |              |Returns all the appointments with the patient’s id that fit the search criteria                                          |
 | GET         | `/patient/appointments/:id/report`                 |                              |                |              |Get the medical report from the appointment                                       |
 | GET         | `/patient/planner/`                 |       date                      |                |              |Get all the patient's prescriptions for that day                                        |
-| POST         | `/doctor/appointment/:id/report`                 |        report file                      |                |              |Stores the medical report in the appointment                                        |
-| DELETE         | `/doctor/appointment/:id/cancel`                 |                             |                |              | Deletes the appointment                                        |
-| POST         | `/doctor/appointment/:id/prescription`                 |                             |                |              |Creates the prescription                                        |
+| POST         | `/doctor/appointment/report/:appointmentId`                 |        report file                      |                |              |Stores the medical report in the appointment                                        |
+| DELETE         | `/doctor/appointment/cancel/:appointmentId`                 |                             |                |              | Deletes the appointment                                        |
+| POST         | `/doctor/appointment/prescription/:appointmentId`                 |                             |                |              |Creates the prescription                                        |
 
 
 
