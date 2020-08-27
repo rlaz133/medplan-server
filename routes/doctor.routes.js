@@ -59,9 +59,19 @@ router.delete('/doctor/appointment/cancel/:appointmentId', isDoctor, (req, res)=
     })
 })
 
-router.post('/doctor/appointment/cancel/:appointmentId', isDoctor, (req, res)=>{
-  AppointmentModel.findByIdAndDelete(req.params.appointmentId)
-    .then(doctor => res.status(200).json(doctor))
+router.post('/doctor/appointment/prescription/:appointmentId', isDoctor, (req, res)=>{
+  console.log(JSON.parse(req.body.medications))
+  PrescriptionModel.create({medications: JSON.parse(req.body.medications)})
+    .then(prescription => {
+      res.status(200).json(prescription)
+      console.log (req.params.appointmentId, prescription._id)
+      AppointmentModel.findByIdAndUpdate(req.params.appointmentId, {$set: {prescription: prescription._id}})
+        .then((appointment)=>{
+          PatientModel.findByIdAndUpdate(appointment.patient, {$push: {prescriptions: prescription._id}})
+          .catch((err)=>console.log ('Error updating patient:', err))
+        })
+        .catch(error=>console.log('Error updating appointment:', error))
+    })
     .catch((err) => {
           res.status(500).json({
               error: 'Something went wrong',
@@ -70,10 +80,11 @@ router.post('/doctor/appointment/cancel/:appointmentId', isDoctor, (req, res)=>{
     })
 })
 
-router.post('/doctor/appointment/prescription/:appointmentId', isDoctor, (req, res)=>{
-  const {name, dosePerTake, frequency, startDate, endDate, comments} = req.body
-  PrescriptionModel.create(name, dosePerTake, frequency, startDate, endDate, comments)
-    .then(prescription => res.status(200).json(prescription))
+router.post('/doctor/appointment/report/:appointmentId', isDoctor, (req, res)=>{
+  const {report} = req.body
+  console.log (report)
+  AppointmentModel.findByIdAndUpdate(req.params.appointmentId, {$set: {report: report}})
+    .then(report => res.status(200).json(report))
     .catch((err) => {
           res.status(500).json({
               error: 'Something went wrong',

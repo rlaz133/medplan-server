@@ -3,7 +3,7 @@ const router  = express.Router();
 const bcrypt = require('bcryptjs');
 const {PatientModel, DoctorModel} = require('../models/User.models');
 
-router.post('/signup', (req, res) => {
+router.post('/auth/signup', (req, res) => {
     const {username, email, password, usertype } = req.body;
     console.log(username, email, password);
  
@@ -97,7 +97,7 @@ router.post('/signup', (req, res) => {
 
 });
  
-router.post('/login', (req, res) => {
+router.post('/auth/login', (req, res) => {
     const {email, password, usertype } = req.body;
     if ( !email || !password) {
         res.status(500).json({
@@ -182,7 +182,7 @@ router.post('/login', (req, res) => {
   
 });
  
-router.post('/logout', (req, res) => {
+router.post('/auth/logout', (req, res) => {
     req.session.destroy();
     res
     .status(204) //  No Content

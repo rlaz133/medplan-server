@@ -1,5 +1,5 @@
 const isLoggedIn = (req, res, next) => {
-  console.log('Middleware', req.session)  
+//   console.log('Middleware', req.session)  
   if (req.session.loggedInUser) {
       next()
   }
@@ -12,7 +12,7 @@ const isLoggedIn = (req, res, next) => {
 };
 
 const isPatient = (req, res, next) => {
-  console.log('Middleware', req.session)  
+//   console.log('Middleware', req.session)  
   if (req.session.usertype==='patient') {
       next()
   }
@@ -25,7 +25,7 @@ const isPatient = (req, res, next) => {
 };
 
 const isDoctor = (req, res, next) => {
-  console.log('Middleware', req.session)  
+//   console.log('Middleware', req.session)  
   if (req.session.usertype==='doctor') {
       next()
   }

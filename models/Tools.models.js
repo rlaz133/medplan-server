@@ -14,7 +14,8 @@ let appointmentSchema = new Schema({
   prescription: {
     type: Schema.Types.ObjectId,
     ref:'prescription'
-  }
+  },
+  report: String
 })
 
 let prescriptionSchema = new Schema({
@@ -22,7 +23,7 @@ let prescriptionSchema = new Schema({
     {
       name: String,
       dosePerTake: String,
-      frequency:{
+      frecuency:{
         takesPerDay: Number,
         daysPerTake:  Number
       },

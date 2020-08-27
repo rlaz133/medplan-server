@@ -173,6 +173,7 @@ This app offers more visiliby to his business and make it easier for the individ
 | POST         | `/doctor/appointment/report/:appointmentId`                 |        report file                      |                |              |Stores the medical report in the appointment                                        |
 | DELETE         | `/doctor/appointment/cancel/:appointmentId`                 |                             |                |              | Deletes the appointment                                        |
 | POST         | `/doctor/appointment/prescription/:appointmentId`                 |                             |                |              |Creates the prescription                                        |
+| POST         | `/upload`                 |                             |                |              |Uploads the report                                        |
 
 
 
