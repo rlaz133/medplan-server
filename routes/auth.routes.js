@@ -41,6 +41,7 @@ router.post('/signup', (req, res) => {
                 .then((user) => {
                   user.passwordHash = "***";
                   req.session.loggedInUser = user;
+                  req.session.usertype = 'patient'
                   res.status(200).json(user);
                 })
                 .catch((err) => {
@@ -71,6 +72,7 @@ router.post('/signup', (req, res) => {
                   .then((user) => {
                     user.passwordHash = "***";
                     req.session.loggedInUser = user;
+                    req.session.usertype = 'doctor'
                     res.status(200).json(user);
                   })
                   .catch((err) => {
@@ -118,6 +120,7 @@ router.post('/login', (req, res) => {
                 if (doesItMatch) {
                   userData.passwordHash = "***";
                   req.session.loggedInUser = userData;
+                  req.session.usertype = 'patient'
                   res.status(200).json(userData)
                 }
                 else {
@@ -151,6 +154,7 @@ router.post('/login', (req, res) => {
                 if (doesItMatch) {
                   userData.passwordHash = "***";
                   req.session.loggedInUser = userData;
+                  req.session.usertype = 'doctor'
                   res.status(200).json(userData)
                 }
                 else {
