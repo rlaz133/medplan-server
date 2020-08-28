@@ -4,6 +4,28 @@ const {PatientModel, DoctorModel} = require('../models/User.models');
 const {AppointmentModel, PrescriptionModel} =require('../models/Tools.models')
 const { isLoggedIn, isPatient } = require ('../helpers/auth.helper')
 
+router.get('patient/appointments', isPatient, (req, res)=>{
+  AppointmentModel.find({patient: req.session.loggedInUser._id})
+  .then((appo)=>{res.status(200).json(appo)})
+    .catch((err) => {
+      res.status(500).json({
+          error: 'Something went wrong',
+          message: err
+      })
+    })
+})
+
+router.get('patient/appointment/report/:appointmentId', isPatient, (req, res)=>{
+  AppointmentModel.findById(req.params.appointmentId)
+  .then((appo)=>{res.status(200).json(appo)})
+    .catch((err) => {
+      res.status(500).json({
+          error: 'Something went wrong',
+          message: err
+      })
+    })
+})
+
 router.post('/patient/appointments/:doctorId', isPatient, (req, res)=>{
   let date = JSON.parse(req.body.event).start
   let eventId = JSON.parse(req.body.event).extendedProps.eventId
