@@ -23,7 +23,12 @@ let patientSchema = new Schema({
       type: Schema.Types.ObjectId, 
       ref: 'prescription'
     }
-  ]
+  ],
+  phoneNumber: Number,
+  birthDate: Date,
+  weight: Number,
+  height: Number
+
 });
 
 let doctorSchema = new Schema({
@@ -51,7 +56,8 @@ let doctorSchema = new Schema({
     endTime: String
   },
   phone: String,
-  picture: String 
+  picture: String,
+  city: String
 })
 
 module.exports = {PatientModel: model('patient', patientSchema), DoctorModel: model('doctor', doctorSchema)};

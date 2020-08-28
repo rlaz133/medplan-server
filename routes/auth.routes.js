@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const bcrypt = require('bcryptjs');
 const {PatientModel, DoctorModel} = require('../models/User.models');
+const {isLoggedIn} = require('../helpers/auth.helper')
 
 router.post('/auth/signup', (req, res) => {
     const {username, email, password, usertype } = req.body;
@@ -192,5 +193,6 @@ router.post('/auth/logout', (req, res) => {
 // router.get("/user", isLoggedIn, (req, res, next) => {
 //   res.status(200).json(req.session.loggedInUser);
 // });
+
 
   module.exports = router;
