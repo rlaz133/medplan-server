@@ -1,8 +1,6 @@
 const express = require('express');
 const router  = express.Router();
 const { isDoctor } = require('../helpers/auth.helper')
-
-// include CLOUDINARY:
 const uploader = require('../configs/cloudinary.config');
 
 router.post('/upload', uploader.single("reportUrl"), (req, res, next) => {
