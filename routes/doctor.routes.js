@@ -38,6 +38,7 @@ router.get('/doctor/appointments/:doctorId', isLoggedIn, (req, res)=>{
 })
 
 router.patch('/doctor/:doctorId', isDoctor, (req, res)=>{
+  console.log (req.body)
   DoctorModel.findByIdAndUpdate(req.params.doctorId, {$set: req.body})
     .then(doctor => res.status(200).json(doctor))
     .catch((err) => {

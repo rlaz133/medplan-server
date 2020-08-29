@@ -27,9 +27,7 @@ router.get('patient/appointment/report/:appointmentId', isPatient, (req, res)=>{
 })
 
 router.post('/patient/appointments/:doctorId', isPatient, (req, res)=>{
-  let date = JSON.parse(req.body.event).start
-  let eventId = JSON.parse(req.body.event).extendedProps.eventId
-  AppointmentModel.create({doctor: req.params.doctorId, patient: req.session.loggedInUser._id, time: date, eventId})
+  AppointmentModel.create({doctor: req.params.doctorId, patient: req.session.loggedInUser._id, reason: req.body.reason, time: new Date(req.body.time), eventId: req.body.eventId})
     .then((appo)=>{res.status(200).json(appo)})
     .catch((err) => {
       res.status(500).json({
@@ -40,9 +38,8 @@ router.post('/patient/appointments/:doctorId', isPatient, (req, res)=>{
 })
 
 router.patch('/patient/appointments/:doctorId', isPatient, (req, res)=>{
-  let date = JSON.parse(req.body.event).start
-  let eventId = JSON.parse(req.body.event).extendedProps.eventId
-  AppointmentModel.findOneAndUpdate({eventId}, {$set: {time: date}})
+  console.log (req.body)
+  AppointmentModel.findOneAndUpdate({eventId: req.body.eventId}, {$set: {time: new Date(req.body.time), reason: req.body.reason}})
     .then((appo)=>{res.status(200).json(appo)})
     .catch((err) => {
       res.status(500).json({
@@ -52,21 +49,21 @@ router.patch('/patient/appointments/:doctorId', isPatient, (req, res)=>{
     })
 })
 
-router.delete('/patient/appointments/:doctorId', isPatient, (req, res)=>{
-  let eventId = JSON.parse(req.body.event).extendedProps.eventId
-  AppointmentModel.findOneAndRemove({eventId})
-    .then((appo)=>{res.status(200).json(appo)})
-    .catch((err) => {
-      res.status(500).json({
-          error: 'Something went wrong',
-          message: err
-      })
-    })
-})
 
-router.post('/patient/appointments/:doctorId', isPatient, (req, res)=>{
-  let date = JSON.parse(req.body.event).start
-  AppointmentModel.create({doctor: req.params.doctorId, patient: req.session.loggedInUser._id, time: date})
+// router.post('/patient/appointments/:doctorId', isPatient, (req, res)=>{
+//   let date = JSON.parse(req.body.event).start
+//   AppointmentModel.create({doctor: req.params.doctorId, patient: req.session.loggedInUser._id, time: date})
+//     .then((appo)=>{res.status(200).json(appo)})
+//     .catch((err) => {
+//       res.status(500).json({
+//           error: 'Something went wrong',
+//           message: err
+//       })
+//     })
+// })
+
+router.delete('/patient/appointments/:doctorId/:eventId', isPatient, (req, res)=>{
+  AppointmentModel.findOneAndRemove({eventId: req.params.eventId})
     .then((appo)=>{res.status(200).json(appo)})
     .catch((err) => {
       res.status(500).json({
