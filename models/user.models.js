@@ -16,8 +16,8 @@ let patientSchema = new Schema({
       required: true
   }, 
   address: String,
-  allergies: [String],
-  history: [String],
+  allergies: String,
+  history: String,
   prescriptions: [
     {
       type: Schema.Types.ObjectId, 
