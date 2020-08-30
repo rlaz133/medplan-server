@@ -93,8 +93,4 @@ router.post('/doctor/appointment/report/:appointmentId', isDoctor, (req, res)=>{
     })
 })
 
-
-
-
-
 module.exports = router
