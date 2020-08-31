@@ -16,8 +16,8 @@ let patientSchema = new Schema({
       required: true
   }, 
   address: String,
-  allergies: [String],
-  history: [String],
+  allergies: String,
+  history: String,
   prescriptions: [
     {
       type: Schema.Types.ObjectId, 
@@ -47,14 +47,8 @@ let doctorSchema = new Schema({
   },
   address: String,
   speciality: String,
-  businessHours:{
-    daysofWeek:{
-      type: [Number],
-      enum: [1, 2, 3, 4, 5]
-    },
-    startTime: String,
-    endTime: String
-  },
+  openingTime: String,
+  closingTime: String,
   phone: String,
   picture: String,
   city: String

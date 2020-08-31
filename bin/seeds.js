@@ -47,7 +47,7 @@ const {AppointmentModel, PrescriptionModel} = require('../models/Tools.models')
 //     businessHours:{
 //       daysofWeek:[1,2,3,4],
 //       startTime: '09:00',
-//       startTime: '16:00'
+//       endTime: '16:00'
 //     },
 //     phone: '99 111 22 33',
 //   },
@@ -60,7 +60,7 @@ const {AppointmentModel, PrescriptionModel} = require('../models/Tools.models')
 //     businessHours:{
 //       daysofWeek:[1,2,3,4,5],
 //       startTime: '09:00',
-//       startTime: '19:00'
+//       endTime: '19:00'
 //     },
 //     phone: '99 444 55 66',
 //   },
@@ -73,7 +73,7 @@ const {AppointmentModel, PrescriptionModel} = require('../models/Tools.models')
 //     businessHours:{
 //       daysofWeek:[1,2,3,4,5],
 //       startTime: '09:00',
-//       startTime: '17:30'
+//       endTime: '17:30'
 //     },
 //     phone: '99 777 88 99',
 //   },

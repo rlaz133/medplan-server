@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const {PatientModel, DoctorModel} = require('../models/User.models');
-const { isPatient, isDoctor, isLoggedIn } = require ('../helpers/auth.helper')
+const { isDoctor, isLoggedIn } = require ('../helpers/auth.helper')
 const {AppointmentModel, PrescriptionModel} = require ('../models/Tools.models')
 
 router.get('/doctor/search', (req, res)=>{
@@ -27,7 +27,7 @@ router.get('/doctor/:doctorId', isLoggedIn, (req, res)=>{
 })
 
 router.get('/doctor/appointments/:doctorId', isLoggedIn, (req, res)=>{
-  AppointmentModel.find({doctor: req.params.doctorId})
+  AppointmentModel.find({doctor: req.params.doctorId}).populate('patient')
     .then(appointments => res.status(200).json(appointments))
     .catch((err) => {
           res.status(500).json({
@@ -38,7 +38,7 @@ router.get('/doctor/appointments/:doctorId', isLoggedIn, (req, res)=>{
 })
 
 router.patch('/doctor/:doctorId', isDoctor, (req, res)=>{
-  console.log (req.body)
+  console.log (req.session.usertype)
   DoctorModel.findByIdAndUpdate(req.params.doctorId, {$set: req.body})
     .then(doctor => res.status(200).json(doctor))
     .catch((err) => {
@@ -49,9 +49,20 @@ router.patch('/doctor/:doctorId', isDoctor, (req, res)=>{
     })
 })
 
-router.delete('/doctor/appointment/cancel/:appointmentId', isDoctor, (req, res)=>{
+router.delete('/cancel/:appointmentId', isDoctor, (req, res)=>{
   AppointmentModel.findByIdAndDelete(req.params.appointmentId)
     .then(doctor => res.status(200).json(doctor))
+    .catch((err) => {
+          res.status(500).json({
+              error: 'Something went wrong',
+              message: err
+          })
+    })
+})
+
+router.get('/doctor/appointment/:appointmentId', isDoctor, (req, res)=>{
+  AppointmentModel.findById(req.params.appointmentId).populate('patient')
+    .then(appointment => res.status(200).json(appointment))
     .catch((err) => {
           res.status(500).json({
               error: 'Something went wrong',
@@ -81,7 +92,7 @@ router.post('/doctor/appointment/prescription/:appointmentId', isDoctor, (req, r
     })
 })
 
-router.post('/doctor/appointment/report/:appointmentId', isDoctor, (req, res)=>{
+router.patch('/doctor/appointment/report/:appointmentId', isDoctor, (req, res)=>{
   const {report} = req.body
   console.log (report)
   AppointmentModel.findByIdAndUpdate(req.params.appointmentId, {$set: {report: report}})

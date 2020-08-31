@@ -13,11 +13,21 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   folder: 'MedPlan', // The name of the folder in cloudinary
-  allowedFormats: ['jpg', 'png', 'pdf'],
+  allowedFormats: ['jpg', 'png'],
+  // params: { resource_type: 'raw' }, 
+  filename: function (req, res, cb) {
+    cb(null, res.originalname); // The file on cloudinary would have the same name as the original file name
+  }
+});
+
+const storageRep = new CloudinaryStorage({
+  cloudinary,
+  folder: 'MedPlan', // The name of the folder in cloudinary
+  allowedFormats: ['pdf'],
   params: { resource_type: 'raw' }, 
   filename: function (req, res, cb) {
     cb(null, res.originalname); // The file on cloudinary would have the same name as the original file name
   }
 });
 
-module.exports = multer({ storage });
+module.exports = multer({ storage, storageRep });
