@@ -13,21 +13,21 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary,
   folder: 'MedPlan', // The name of the folder in cloudinary
-  allowedFormats: ['jpg', 'png'],
+  allowedFormats: ['jpg', 'png', 'pdf'],
   // params: { resource_type: 'raw' }, 
   filename: function (req, res, cb) {
     cb(null, res.originalname); // The file on cloudinary would have the same name as the original file name
   }
 });
 
-const storageRep = new CloudinaryStorage({
-  cloudinary,
-  folder: 'MedPlan', // The name of the folder in cloudinary
-  allowedFormats: ['pdf'],
-  params: { resource_type: 'raw' }, 
-  filename: function (req, res, cb) {
-    cb(null, res.originalname); // The file on cloudinary would have the same name as the original file name
-  }
-});
+// const storageRep = new CloudinaryStorage({
+//   cloudinary,
+//   folder: 'MedPlan', // The name of the folder in cloudinary
+//   allowedFormats: ['pdf'],
+//   params: { resource_type: 'image' }, 
+//   filename: function (req, res, cb) {
+//     cb(null, res.originalname); // The file on cloudinary would have the same name as the original file name
+//   }
+// });
 
-module.exports = multer({ storage, storageRep });
+module.exports = multer({ storage });

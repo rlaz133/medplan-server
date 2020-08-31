@@ -23,10 +23,8 @@ let prescriptionSchema = new Schema({
     {
       name: String,
       dosePerTake: String,
-      frecuency:{
-        takesPerDay: Number,
-        daysPerTake:  Number
-      },
+      takesPerDay: Number,
+      daysPerTake:  Number,
       startDate: Date,
       endDate: Date,
       comments: String    

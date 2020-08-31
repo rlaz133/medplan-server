@@ -5,7 +5,6 @@ const {AppointmentModel } =require('../models/Tools.models')
 const { isLoggedIn, isPatient } = require ('../helpers/auth.helper')
 
 router.get('/patient/appointments', isPatient, (req, res)=>{
-  console.log(req.session.loggedInUser._id, "hello")
   AppointmentModel.find({patient: req.session.loggedInUser._id}).populate("doctor")
   .then((appo)=>{res.status(200).json(appo)})
     .catch((err) => {
@@ -41,7 +40,6 @@ router.post('/patient/appointments/:doctorId', isPatient, (req, res)=>{
 
 
 router.patch('/patient/appointments/:doctorId', isPatient, (req, res)=>{
-  console.log (req.body)
   AppointmentModel.findOneAndUpdate({eventId: req.body.eventId}, {$set: {time: new Date(req.body.time), reason: req.body.reason}})
     .then((appo)=>{res.status(200).json(appo)})
     .catch((err) => {
@@ -65,7 +63,6 @@ router.delete('/patient/appointments/:doctorId/:eventId', isPatient, (req, res)=
 })
 
 router.get('/patient/planner', isPatient,  (req, res)=>{
-  console.log (req.session.loggedInUser._id)
   PatientModel.findById(req.session.loggedInUser._id).populate('prescriptions')
     .then(patient => res.status(200).json(patient))
     .catch((err) => {
