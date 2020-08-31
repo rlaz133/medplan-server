@@ -15,8 +15,7 @@ let appointmentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref:'prescription'
   },
-  report: String,
-  eventId: String
+  report: String
 })
 
 let prescriptionSchema = new Schema({

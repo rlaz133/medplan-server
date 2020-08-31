@@ -5,7 +5,7 @@ const {PatientModel, DoctorModel} = require('../models/User.models');
 const {isLoggedIn} = require('../helpers/auth.helper')
 
 router.post('/auth/signup', (req, res) => {
-    const {username, email, password, usertype } = req.body;
+    const {username, email, password, usertype, allergies, history} = req.body;
     console.log(username, email, password);
  
     if (!username || !email || !password) {

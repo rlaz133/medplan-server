@@ -4,8 +4,9 @@ const {PatientModel} = require('../models/User.models');
 const {AppointmentModel } =require('../models/Tools.models')
 const { isLoggedIn, isPatient } = require ('../helpers/auth.helper')
 
-router.get('patient/appointments', isPatient, (req, res)=>{
-  AppointmentModel.find({patient: req.session.loggedInUser._id})
+router.get('/patient/appointments', isPatient, (req, res)=>{
+  console.log(req.session.loggedInUser._id, "hello")
+  AppointmentModel.find({patient: req.session.loggedInUser._id}).populate("doctor")
   .then((appo)=>{res.status(200).json(appo)})
     .catch((err) => {
       res.status(500).json({
@@ -15,7 +16,7 @@ router.get('patient/appointments', isPatient, (req, res)=>{
     })
 })
 
-router.get('patient/appointment/report/:appointmentId', isPatient, (req, res)=>{
+router.get('/patient/appointment/report/:appointmentId', isPatient, (req, res)=>{
   AppointmentModel.findById(req.params.appointmentId)
   .then((appo)=>{res.status(200).json(appo)})
     .catch((err) => {
@@ -75,16 +76,17 @@ router.get('/patient/planner', isPatient,  (req, res)=>{
     })
   })
 
-router.get('/patient/:patientId', isLoggedIn, (req, res)=>{
-  PatientModel.findById(req.params.patientId)
-    .then(patient => res.status(200).json(patient))
-    .catch((err) => {
-          res.status(500).json({
-              error: 'Something went wrong',
-              message: err
-          })
-    })
-})
+// router.get('/patient/:patientId', isLoggedIn, (req, res)=>{
+//   console.log("test")
+//   PatientModel.findById(req.params.patientId)
+//     .then(patient => res.status(200).json(patient))
+//     .catch((err) => {
+//           res.status(500).json({
+//               error: 'Something went wrong',
+//               message: err
+//           })
+//     })
+// })
 
 router.patch('/patient/:patientId', isPatient, (req, res)=>{
   PatientModel.findByIdAndUpdate(req.params.patientId, {$set: req.body})
