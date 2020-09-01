@@ -47,10 +47,10 @@ let doctorSchema = new Schema({
   },
   address: String,
   speciality: String,
-  openingTime: String,
-  closingTime: String,
+  openingTime: {type: String, default: "09:00"},
+  closingTime: {type: String, default: "18:00"},
   phone: String,
-  picture: String,
+  picture: {type: String, default: "../images/no-pic-doc.png"},
   city: String
 })
 
