@@ -102,9 +102,9 @@ router.post('/create-prescription/:appointmentId', isDoctor, (req, res)=>{
     })
 })
 
-router.patch('/doctor/appointment/report/:appointmentId', isDoctor, (req, res)=>{
+router.patch('/append-report/:appointmentId', isDoctor, (req, res)=>{
   const {report} = req.body
-  console.log (report)
+  console.log (req.body)
   AppointmentModel.findByIdAndUpdate(req.params.appointmentId, {$set: {report: report}})
     .then(report => res.status(200).json(report))
     .catch((err) => {
