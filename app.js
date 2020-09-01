@@ -26,8 +26,8 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 app.use(
   session({
     secret: 'my-secret-weapon',
-    saveUninitialized: false,
-    resave: false,
+    saveUninitialized: true,
+    resave: true,
     cookie: {
       maxAge: 60 * 60 * 24 * 1000, //60 sec * 60 min * 24hrs = 1 day (in milliseconds)
     },
@@ -35,7 +35,7 @@ app.use(
       mongooseConnection: mongoose.connection,
       //time to live (in seconds)
       ttl: 60 * 60 * 24,
-      autoRemove: 'enable',
+      autoRemove: 'disabled',
     }),
   })
 );

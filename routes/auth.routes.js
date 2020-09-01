@@ -140,7 +140,7 @@ router.post('/auth/login', (req, res) => {
       })
       .catch((err) => {
         res.status(500).json({
-            error: 'Email format not correct',
+            error: 'Could not find that email in that category.',
             message: err
         })
         return;  
@@ -174,7 +174,7 @@ router.post('/auth/login', (req, res) => {
       })
       .catch((err) => {
         res.status(500).json({
-            error: 'Email format not correct',
+            error: 'Could not find that email in that category.',
             message: err
         })
         return;  
