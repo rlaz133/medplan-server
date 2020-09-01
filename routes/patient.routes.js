@@ -27,6 +27,7 @@ router.get('/patient/appointment/report/:appointmentId', isPatient, (req, res)=>
 })
 
 router.post('/patient/appointments/:doctorId', isPatient, (req, res)=>{
+  console.log (req.body)
   AppointmentModel.create({doctor: req.params.doctorId, patient: req.session.loggedInUser._id, reason: req.body.reason, time: new Date(req.body.time), eventId: req.body.eventId})
     .then((appo)=>{res.status(200).json(appo)})
     .catch((err) => {

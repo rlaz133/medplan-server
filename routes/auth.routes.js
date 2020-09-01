@@ -29,7 +29,7 @@ router.post('/auth/signup', (req, res) => {
     if (!myPassRegex.test(password)) {
       res.status(500)
           .json({
-            errorMessage: 'Password needs to have 8 characters, a number and an Uppercase alphabet'
+            errorMessage: 'Password is too weak'
           });
         return;  
     }
@@ -49,7 +49,7 @@ router.post('/auth/signup', (req, res) => {
                   if (err.code === 11000) {
                     res.status(409)
                     .json({
-                      errorMessage: 'username or email entered already exists!'
+                      errorMessage: 'That email already exists!'
                     });
                     return;  
                   } 
@@ -80,7 +80,7 @@ router.post('/auth/signup', (req, res) => {
                     if (err.code === 11000) {
                       res.status(409)
                       .json({
-                        errorMessage: 'username or email entered already exists!'
+                        errorMessage: 'That email already exists!'
                       });
                       return;  
                     } 
@@ -102,7 +102,7 @@ router.post('/auth/login', (req, res) => {
     const {email, password, usertype } = req.body;
     if ( !email || !password) {
         res.status(500).json({
-            error: 'Please enter Username. email and password',
+            error: 'All three fields are mandatory.',
        })
       return;  
     }
@@ -192,7 +192,8 @@ router.post('/auth/logout', (req, res) => {
 
 router.get("/user", isLoggedIn, (req, res, next) => {
   res.status(200).json(req.session);
-});
+})
+
 
 
   module.exports = router;
