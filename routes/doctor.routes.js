@@ -38,7 +38,6 @@ router.get('/doctor/appointments/:doctorId', isLoggedIn, (req, res)=>{
 })
 
 router.patch('/doctor/:doctorId', isDoctor, (req, res)=>{
-  console.log (req.session.usertype)
   DoctorModel.findByIdAndUpdate(req.params.doctorId, {$set: req.body})
     .then(doctor => res.status(200).json(doctor))
     .catch((err) => {
@@ -71,9 +70,20 @@ router.get('/doctor/appointment/:appointmentId', isDoctor, (req, res)=>{
     })
 })
 
-router.post('/doctor/appointment/prescription/:appointmentId', isDoctor, (req, res)=>{
-  console.log(JSON.parse(req.body.medications))
-  PrescriptionModel.create({medications: JSON.parse(req.body.medications)})
+router.get('/fetch-prescription/:appointmentId', isDoctor, (req,res)=>{
+  AppointmentModel.findById(req.params.appointmentId).populate('prescription')
+    .then(prescription=> res.status(200).json(prescription))
+    .catch(error=> {
+      res.status(500).json({
+        error: 'Something went wrong',
+        message: err
+    })
+  })
+})
+
+router.post('/create-prescription/:appointmentId', isDoctor, (req, res)=>{
+  console.log(req.body[0])
+  PrescriptionModel.create({medications: req.body.medications})
     .then(prescription => {
       res.status(200).json(prescription)
       console.log (req.params.appointmentId, prescription._id)
