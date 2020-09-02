@@ -79,6 +79,8 @@ app.use('/api', patient);
 app.use('/api', doctor);
 app.use('/api', fileUpload);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Listening on http://localhost:${process.env.PORT}`);
-});
+// app.listen(process.env.PORT, () => {
+//   console.log(`Listening on http://localhost:${process.env.PORT}`);
+// });
+
+module.exports = app
