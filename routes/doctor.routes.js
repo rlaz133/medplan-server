@@ -82,7 +82,7 @@ router.get('/fetch-prescription/:appointmentId', isDoctor, (req,res)=>{
 })
 
 router.post('/create-prescription/:appointmentId', isDoctor, (req, res)=>{
-  console.log(req.body[0])
+  console.log(req.body.medications)
   PrescriptionModel.create({medications: req.body.medications})
     .then(prescription => {
       res.status(200).json(prescription)

@@ -37,10 +37,10 @@ let prescriptionSchema = new Schema({
         type: Number,
         required: true},
       startDate: {
-        type: Date,
+        type: String,
         required: true},
       endDate: {
-        type: Date,
+        type: String,
         required: true},
       comments: String    
     }
