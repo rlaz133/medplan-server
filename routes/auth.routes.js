@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const bcrypt = require('bcryptjs');
-const {PatientModel, DoctorModel} = require('../models/User.models');
+const {PatientModel, DoctorModel} = require('../models/user.model');
 const {isLoggedIn} = require('../helpers/auth.helper')
 
 router.post('/auth/signup', (req, res) => {

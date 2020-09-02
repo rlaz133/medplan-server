@@ -1,7 +1,7 @@
-require('../configs/db.config');
-const {connection, isValidObjectId} = require('mongoose');
-const {PatientModel, DoctorModel} = require('../models/User.models')
-const {AppointmentModel, PrescriptionModel} = require('../models/Tools.models')
+// require('../configs/db.config');
+// const {connection, isValidObjectId} = require('mongoose');
+// const {PatientModel, DoctorModel} = require('../models/User.models')
+// const {AppointmentModel, PrescriptionModel} = require('../models/Tools.models')
 
 //First step. Make sure the other steps are commented out and seed the patients, doctors and prescriptions.
 
