@@ -24,8 +24,8 @@ let patientSchema = new Schema({
       ref: 'prescription'
     }
   ],
-  phoneNumber: Number,
-  birthDate: Date,
+  phoneNumber: String,
+  birthDate: String,
   weight: Number,
   height: Number
 
