@@ -15,9 +15,11 @@ router.get('/doctor/search', (req, res)=>{
     })
 })
 
-router.get('/doctor/:doctorId', isLoggedIn, (req, res)=>{
-  DoctorModel.findById(req.params.doctorId)
-    .then(doctor => res.status(200).json(doctor))
+
+
+router.get('/doctor/appointments/:doctorId', isLoggedIn, (req, res)=>{
+  AppointmentModel.find({doctor: req.params.doctorId}).populate('patient')
+    .then(appointments => res.status(200).json(appointments))
     .catch((err) => {
           res.status(500).json({
               error: 'Something went wrong',
@@ -26,9 +28,9 @@ router.get('/doctor/:doctorId', isLoggedIn, (req, res)=>{
     })
 })
 
-router.get('/doctor/appointments/:doctorId', isLoggedIn, (req, res)=>{
-  AppointmentModel.find({doctor: req.params.doctorId}).populate('patient')
-    .then(appointments => res.status(200).json(appointments))
+router.get('/doctor/:doctorId', isLoggedIn, (req, res)=>{
+  DoctorModel.findById(req.params.doctorId)
+    .then(doctor => res.status(200).json(doctor))
     .catch((err) => {
           res.status(500).json({
               error: 'Something went wrong',
