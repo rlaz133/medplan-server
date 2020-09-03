@@ -64,7 +64,10 @@ router.delete('/patient/appointments/:doctorId/:eventId', isPatient, (req, res)=
 })
 
 router.get('/planner', isPatient,  (req, res)=>{
+<<<<<<< HEAD
   console.log(req.session)
+=======
+>>>>>>> origin/rafael
   PatientModel.findById(req.session.loggedInUser._id).populate('prescriptions')
     .then(patient => res.status(200).json(patient))
     .catch((err) => {

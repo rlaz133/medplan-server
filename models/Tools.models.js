@@ -22,17 +22,30 @@ let appointmentSchema = new Schema({
 let prescriptionSchema = new Schema({
   medications: [
     {
-      name: String,
-      dosePerTake: String,
-      takesPerDay: Number,
-      daysPerTake:  Number,
-      startDate: Date,
-      endDate: Date,
+      name: {
+        type: String,
+        required: true
+      },
+      dosePerTake: {
+        type: String,
+        required: true
+      },
+      takesPerDay: {
+        type: Number,
+        required: true},
+      daysPerTake:{
+        type: Number,
+        required: true},
+      startDate: {
+        type: Date,
+        required: true},
+      endDate: {
+        type: Date,
+        required: true},
       comments: String    
     }
   ]
-}, 
-{timestamps: {}}
+}
 )
 
 module.exports = {AppointmentModel: model('appointment', appointmentSchema), PrescriptionModel: model('prescription', prescriptionSchema)};
