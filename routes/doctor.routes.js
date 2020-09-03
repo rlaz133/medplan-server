@@ -39,16 +39,7 @@ router.get('/doctor/:doctorId', isLoggedIn, (req, res)=>{
     })
 })
 
-router.patch('/doctor/:doctorId', isDoctor, (req, res)=>{
-  DoctorModel.findByIdAndUpdate(req.params.doctorId, {$set: req.body})
-    .then(doctor => res.status(200).json(doctor))
-    .catch((err) => {
-          res.status(500).json({
-              error: 'Something went wrong',
-              message: err
-          })
-    })
-})
+
 
 router.delete('/cancel/:appointmentId', isDoctor, (req, res)=>{
   AppointmentModel.findByIdAndDelete(req.params.appointmentId)
@@ -109,6 +100,17 @@ router.patch('/append-report/:appointmentId', isDoctor, (req, res)=>{
   console.log (req.body)
   AppointmentModel.findByIdAndUpdate(req.params.appointmentId, {$set: {report: report}})
     .then(report => res.status(200).json(report))
+    .catch((err) => {
+          res.status(500).json({
+              error: 'Something went wrong',
+              message: err
+          })
+    })
+})
+
+router.patch('/doctor/:doctorId', isDoctor, (req, res)=>{
+  DoctorModel.findByIdAndUpdate(req.params.doctorId, {$set: req.body})
+    .then(doctor => res.status(200).json(doctor))
     .catch((err) => {
           res.status(500).json({
               error: 'Something went wrong',
